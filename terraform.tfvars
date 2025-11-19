@@ -1,4 +1,4 @@
 # my-os-image = "ami-0cae6d6fe6048ca2c"
 # my-size = "t2.micro"
-vm-name = "brians-new-VM"
+vm-name = "brians-new-VM-day3"
 # my-region = "us-east-1"
