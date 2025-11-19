@@ -6,6 +6,7 @@ resource "aws_instance" "example" {
     Name = var.vm-name
   }
   key_name = var.private-key-name
+  vpc_security_group_ids = [aws_security_group.brian-sec-grp.id]
 }
 
 resource "local_file" "ipadx" {
