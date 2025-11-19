@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    triggers {
+        githubPush()    // Trigger Jenkins on every push to repo
+    }
+ 
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+                sh 'ls -a'
+            }
+        }
+        stage('branch test'){
+            when { branch 'prod' }
+            steps {
+                echo "hello world new"
+               // git url: 'https://github.com/brihamm22/boa-terraform-cicd.git', branch: 'prod'
+                sh 'ls -a'
+            }
+        }
+        stage('terraform test'){
+            when {
+                 expression { env.BRANCH_NAME == 'prod' || env.GIT_BRANCH == 'origin/prod' }
+            }   
+            steps {
+                echo "hello world new data"
+            // git url: 'https://github.com/brihamm22/boa-terraform-cicd.git', branch: 'prod'
+                sh 'terraform init'
+                sh 'terraform plan'
+            }
+        }
+    }
+}
